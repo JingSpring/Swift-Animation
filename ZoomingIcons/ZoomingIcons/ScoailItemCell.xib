@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="gTV-IL-0wX" customClass="ScoailItemCell" customModule="ZoomingIcons" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Maa-lm-Lly">
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                        <color key="backgroundColor" red="0.30196079611778259" green="0.56470590829849243" blue="0.91372549533843994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-twitter" translatesAutoresizingMaskIntoConstraints="NO" id="zqc-9z-TRS">
+                        <rect key="frame" x="9" y="10" width="61" height="61"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="61" id="Hai-aQ-oI8"/>
+                            <constraint firstAttribute="width" constant="61" id="pEI-PT-O3J"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="zqc-9z-TRS" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="826-bE-hP0"/>
+                <constraint firstItem="Maa-lm-Lly" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Pxe-ms-IXf"/>
+                <constraint firstItem="zqc-9z-TRS" firstAttribute="centerY" secondItem="Maa-lm-Lly" secondAttribute="centerY" id="QBf-LK-UNG"/>
+                <constraint firstItem="Maa-lm-Lly" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rEU-lf-f90"/>
+                <constraint firstItem="zqc-9z-TRS" firstAttribute="centerX" secondItem="Maa-lm-Lly" secondAttribute="centerX" id="v7S-5R-F4O"/>
+                <constraint firstItem="zqc-9z-TRS" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="xV9-02-G38"/>
+            </constraints>
+            <size key="customSize" width="89" height="83"/>
+            <connections>
+                <outlet property="coloredView" destination="Maa-lm-Lly" id="Ynb-a7-8U0"/>
+                <outlet property="imageView" destination="zqc-9z-TRS" id="1fZ-2p-gqP"/>
+            </connections>
+            <point key="canvasLocation" x="432" y="301"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icon-twitter" width="200" height="166"/>
+    </resources>
+</document>
