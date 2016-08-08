@@ -47,10 +47,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.25098039220000001" green="0.67843137249999996" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-twitter" translatesAutoresizingMaskIntoConstraints="NO" id="NmI-ex-0H3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-twitter" translatesAutoresizingMaskIntoConstraints="NO" id="NmI-ex-0H3">
                                 <rect key="frame" x="200" y="120" width="200" height="166"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mt-Qe-Tou">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mt-Qe-Tou">
                                 <rect key="frame" x="0.0" y="20" width="44" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="6Ar-dz-KR3"/>
@@ -95,9 +95,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="QQT-ts-XC5"/>
                     <connections>
+                        <outlet property="backButtonTopConstraint" destination="Hj0-l4-Rhz" id="aG6-r6-Agk"/>
                         <outlet property="coloredView" destination="2ep-sT-Amb" id="T3I-Yo-hzi"/>
                         <outlet property="imageView" destination="NmI-ex-0H3" id="59W-C2-Mng"/>
                         <outlet property="summaryLabel" destination="3YB-n9-7fu" id="xTL-ms-igU"/>
+                        <outlet property="summaryLabelBottomConstraint" destination="h0p-gg-Tfr" id="0J5-TM-L4y"/>
                         <outlet property="titleLabel" destination="R1E-j4-xfS" id="Rwj-B9-qJg"/>
                     </connections>
                 </viewController>

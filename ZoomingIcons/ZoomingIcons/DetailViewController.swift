@@ -16,6 +16,10 @@ class DetailViewController: UIViewController, ZoomingIconViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
     
+    @IBOutlet weak var backButtonTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var summaryLabelBottomConstraint: NSLayoutConstraint!
+    
+    
     var item: SocailItem?
     
     
@@ -37,6 +41,10 @@ class DetailViewController: UIViewController, ZoomingIconViewController {
         }
         
     }
+    //最后加的一步
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -44,6 +52,17 @@ class DetailViewController: UIViewController, ZoomingIconViewController {
     }
     @IBAction func handleBackButton(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func setupState(initial: Bool) {
+        if initial {
+            backButtonTopConstraint.constant = -64
+            summaryLabelBottomConstraint.constant = -200
+        }else{
+            backButtonTopConstraint.constant = 0
+            summaryLabelBottomConstraint.constant = 80
+        }
+        view.layoutIfNeeded()
     }
     
     /**
@@ -55,6 +74,18 @@ class DetailViewController: UIViewController, ZoomingIconViewController {
     
     func zoomingIconImageViewForTransition(transition: ZoomingIconTransition) -> UIImageView! {
         return imageView
+    }
+    
+    func zoomingIconTransition(transition: ZoomingIconTransition, willAnimateTransitionWithOperation operation: UINavigationControllerOperation, isForegroundViewController isForeground: Bool) {
+        setupState(operation == .Push)
+        
+        UIView.animateWithDuration(0.6, delay: operation == .Push ? 0.2 : 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .TransitionNone, animations: { () -> Void in
+            [self]
+            self.setupState(operation == .Pop)
+            }) { (finished) -> Void in
+                
+        }
+        
     }
 
 }
