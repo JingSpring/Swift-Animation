@@ -40,7 +40,7 @@
                 <outlet property="coloredView" destination="Maa-lm-Lly" id="Ynb-a7-8U0"/>
                 <outlet property="imageView" destination="zqc-9z-TRS" id="1fZ-2p-gqP"/>
             </connections>
-            <point key="canvasLocation" x="432" y="301"/>
+            <point key="canvasLocation" x="114" y="161"/>
         </collectionViewCell>
     </objects>
     <resources>

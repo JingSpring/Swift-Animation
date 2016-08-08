@@ -12,6 +12,15 @@ class ScoailItemCell: UICollectionViewCell {
     
     @IBOutlet weak var coloredView: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    
+    var item: SocailItem? {
+        didSet {
+            if let item = item {
+                coloredView.backgroundColor = item.color
+                imageView.image = item.image
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -16,11 +16,26 @@ class DetailViewController: UIViewController, ZoomingIconViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
     
+    var item: SocailItem?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        if let item = item {
+            coloredView.backgroundColor = item.color
+            imageView.image = item.image
+            
+            titleLabel.text = item.name
+            summaryLabel.text = item.summary
+        }else{
+            coloredView.backgroundColor = UIColor.grayColor()
+            imageView.image = nil
+            
+            titleLabel.text = nil
+            summaryLabel.text = nil 
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

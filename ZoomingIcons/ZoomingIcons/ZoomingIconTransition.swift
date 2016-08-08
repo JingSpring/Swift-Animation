@@ -170,8 +170,8 @@ class ZoomingIconTransition: NSObject, UIViewControllerAnimatedTransitioning, UI
             snapshotViews.coloredView.transform = CGAffineTransformMakeScale(kZoomingIconTransitionZoomScale, kZoomingIconTransitionZoomScale)
             snapshotViews.coloredView.center = containerView.convertPoint(viewsInForeground.imageView.center, fromView: viewsInForeground.imageView.superview)
             snapshotViews.imageView.frame = containerView.convertRect(viewsInForeground.imageView.frame, fromView: viewsInForeground.imageView.superview)
-        default:
-            ()
+//        default:
+//            ()
         }
     }
     
