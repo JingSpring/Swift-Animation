@@ -8,8 +8,15 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, ZoomingIconViewController {
+    
+    @IBOutlet weak var coloredView: UIView!
+    @IBOutlet weak var imageView: UIImageView!
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var summaryLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +29,17 @@ class DetailViewController: UIViewController {
     }
     @IBAction func handleBackButton(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    /**
+    *  ZoomingIconViewController protocol
+    */
+    func zoomingIconColoredViewForTransition(transition: ZoomingIconTransition) -> UIView! {
+        return coloredView
+    }
+    
+    func zoomingIconImageViewForTransition(transition: ZoomingIconTransition) -> UIImageView! {
+        return imageView
     }
 
 }

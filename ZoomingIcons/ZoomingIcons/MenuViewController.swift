@@ -10,7 +10,9 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class MenuViewController: UICollectionViewController {
+class MenuViewController: UICollectionViewController, ZoomingIconViewController {
+    
+    var selectedIndexPath: NSIndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +57,9 @@ class MenuViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        selectedIndexPath = indexPath
+        
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("detailViewController") as! DetailViewController
         navigationController?.pushViewController(controller, animated: true)
     }
@@ -72,6 +77,27 @@ class MenuViewController: UICollectionViewController {
         
         return UIEdgeInsets(top: 0, left: inset, bottom: 40, right: inset)
         
+    }
+    
+    /**
+    *  ZoomingIconViewController protocol
+    */
+    func zoomingIconColoredViewForTransition(transition: ZoomingIconTransition) -> UIView! {
+        if let indexPath = selectedIndexPath {
+            let cell = collectionView?.cellForItemAtIndexPath(indexPath) as! ScoailItemCell
+            return cell.coloredView
+        }else{
+            return nil
+        }
+    }
+    
+    func zoomingIconImageViewForTransition(transition: ZoomingIconTransition) -> UIImageView! {
+        if let indexPath = selectedIndexPath {
+            let cell = collectionView?.cellForItemAtIndexPath(indexPath) as! ScoailItemCell
+            return cell.imageView
+        }else{
+            return nil 
+        }
     }
 
 

@@ -94,6 +94,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QQT-ts-XC5"/>
+                    <connections>
+                        <outlet property="coloredView" destination="2ep-sT-Amb" id="T3I-Yo-hzi"/>
+                        <outlet property="imageView" destination="NmI-ex-0H3" id="59W-C2-Mng"/>
+                        <outlet property="summaryLabel" destination="3YB-n9-7fu" id="xTL-ms-igU"/>
+                        <outlet property="titleLabel" destination="R1E-j4-xfS" id="Rwj-B9-qJg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8DW-1G-udP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
