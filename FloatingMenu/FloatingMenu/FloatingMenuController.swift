@@ -15,6 +15,30 @@ class FloatingMenuController: UIViewController {
     let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
     let closeButton = FloatingButton(image: UIImage(named: "icon-close"), backgroundColor: UIColor.flatRedColor)
     
+    var buttonDirection = Direction.Up
+    var buttonPadding: CGFloat = 70
+    var buttonItems = [UIButton]()
+    
+    enum Direction {
+        case Up
+        case Down
+        case Left
+        case Right
+        
+        func offsetPoint(point: CGPoint, offset: CGFloat) -> CGPoint {
+            switch self {
+            case .Up:
+                return CGPoint(x: point.x, y: point.y - offset)
+            case .Down:
+                return CGPoint(x: point.x, y: point.y + offset)
+            case .Left:
+                return CGPoint(x: point.x - offset, y: point.y)
+            case .Right:
+                return CGPoint(x: point.x + offset, y: point.y)
+            }
+        }
+    }
+    
     init(fromView: UIView) {
         
         self.fromView = fromView
@@ -33,6 +57,11 @@ class FloatingMenuController: UIViewController {
         let center = parentController!.view.convertPoint(fromView.center, fromView: fromView.superview)
         
         closeButton.center = center
+        
+        //enumerate：调用序列 7.0后不再使用：enumerate(buttonItems)
+        for (index, button) in buttonItems.enumerate() {
+            button.center = buttonDirection.offsetPoint(center, offset: buttonPadding * CGFloat(index+1))
+        }
     }
     
     func handleCloseMenu(sender: AnyObject) {
@@ -48,6 +77,10 @@ class FloatingMenuController: UIViewController {
         
         closeButton.addTarget(self, action: "handleCloseMenu:", forControlEvents: .TouchUpInside)
         view.addSubview(closeButton)
+        
+        for button in buttonItems {
+            view.addSubview(button)
+        }
         
     }
     

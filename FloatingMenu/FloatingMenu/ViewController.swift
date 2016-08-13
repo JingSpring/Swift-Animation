@@ -16,6 +16,13 @@ class ViewController: UIViewController {
     @IBAction func handleMenuButton(sender: AnyObject) {
         
         let controller = FloatingMenuController(fromView: sender as! UIButton)
+        controller.buttonItems = [
+            FloatingButton(image: UIImage(named: "icon-add")),
+            FloatingButton(image: UIImage(named: "model-8")),
+            FloatingButton(image: UIImage(named: "model-7")),
+            FloatingButton(image: UIImage(named: "model-4")),
+            FloatingButton(image: UIImage(named: "model-5")),
+        ]
         presentViewController(controller, animated: true, completion: nil)
         
     }
