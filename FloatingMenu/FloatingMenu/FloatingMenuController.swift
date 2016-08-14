@@ -61,16 +61,42 @@ class FloatingMenuController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configButtons() {
+    func configButtons(initial: Bool) {
         let parentController = presentingViewController
         let center = parentController!.view.convertPoint(fromView.center, fromView: fromView.superview)
         
         closeButton.center = center
         
-        //enumerate：调用序列 7.0后不再使用：enumerate(buttonItems)
-        for (index, button) in buttonItems.enumerate() {
-            button.center = buttonDirection.offsetPoint(center, offset: buttonPadding * CGFloat(index+1))
+        if initial {
+            closeButton.alpha = 0
+            closeButton.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+            
+            for (_, button) in buttonItems.enumerate() {
+                button.center = center
+                button.alpha = 0
+                button.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
+            }
+        }else{
+            closeButton.alpha = 1
+            closeButton.transform = CGAffineTransformIdentity
+            
+            //enumerate：调用序列 7.0后不再使用：enumerate(buttonItems)
+            for (index, button) in buttonItems.enumerate() {
+                button.center = buttonDirection.offsetPoint(center, offset: buttonPadding * CGFloat(index+1))
+                button.alpha = 1
+                button.transform = CGAffineTransformIdentity
+            }
+            
         }
+    }
+    
+    func animateButton(visible: Bool) {
+        configButtons(visible)
+        
+        UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0, options: .TransitionNone, animations: { () -> Void in
+            [self]
+            self.configButtons(!visible)
+            }, completion: nil)
     }
     
     func handleCloseMenu(sender: AnyObject) {
@@ -106,7 +132,12 @@ class FloatingMenuController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        configButtons()
+        animateButton(true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        animateButton(false)
     }
 
     override func didReceiveMemoryWarning() {
