@@ -26,6 +26,10 @@ class FloatingMenuController: UIViewController {
     var buttonPadding: CGFloat = 70
     var buttonItems = [UIButton]()
     
+    var labelDirection = Direction.Left
+    var labelTitles = [String]()
+    var buttonLabels = [UILabel]()
+    
     weak var delegate: FloatingMenuControllerDelegate?
     
     enum Direction {
@@ -76,6 +80,16 @@ class FloatingMenuController: UIViewController {
                 button.alpha = 0
                 button.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
             }
+            
+            for (index, label) in buttonLabels.enumerate() {
+                let buttonCenter = buttonDirection.offsetPoint(center, offset: buttonPadding * CGFloat(index+1))
+                
+                let labelSize = labelDirection == .Up || labelDirection == .Down ? label.bounds.height : label.bounds.width
+                let labelCenter = labelDirection.offsetPoint(buttonCenter, offset: buttonPadding/2 + labelSize)
+                label.center = labelCenter
+                label.alpha = 0
+            }
+            
         }else{
             closeButton.alpha = 1
             closeButton.transform = CGAffineTransformIdentity
@@ -85,6 +99,15 @@ class FloatingMenuController: UIViewController {
                 button.center = buttonDirection.offsetPoint(center, offset: buttonPadding * CGFloat(index+1))
                 button.alpha = 1
                 button.transform = CGAffineTransformIdentity
+            }
+            
+            for (index, label) in buttonLabels.enumerate() {
+                let buttonCenter = buttonDirection.offsetPoint(center, offset: buttonPadding * CGFloat(index+1))
+                
+                let labelSize = labelDirection == .Up || labelDirection == .Down ? label.bounds.height : label.bounds.width
+                let labelCenter = labelDirection.offsetPoint(buttonCenter, offset: buttonPadding/2 + labelSize/2)
+                label.center = labelCenter
+                label.alpha = 1
             }
             
         }
@@ -126,6 +149,22 @@ class FloatingMenuController: UIViewController {
         for button in buttonItems {
             button.addTarget(self, action: "handleMenuButton:", forControlEvents: .TouchUpInside)
             view.addSubview(button)
+        }
+        
+        for title in labelTitles {
+            let label = UILabel()
+            label.text = title
+            label.textColor = UIColor.flatBlackColor
+            label.textAlignment = .Center
+            label.font = UIFont(name: "HelveticaNeue-Light", size: 15)
+            label.backgroundColor = UIColor.flatWhiteColor
+            label.sizeToFit()
+            label.bounds.size.height += 8
+            label.bounds.size.width += 20
+            label.layer.cornerRadius = 4
+            label.layer.masksToBounds = true
+            view.addSubview(label)
+            buttonLabels.append(label)
         }
         
     }

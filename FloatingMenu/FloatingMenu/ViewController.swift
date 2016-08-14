@@ -26,6 +26,15 @@ class ViewController: UIViewController, FloatingMenuControllerDelegate {
             FloatingButton(image: UIImage(named: "model-4")),
             FloatingButton(image: UIImage(named: "model-5")),
         ]
+        
+        controller.labelTitles = [
+            "New Contact",
+            "Heidi Hernandez",
+            "Neil Ross",
+            "Elijah Woods",
+            "Bella Douglas"
+        ]
+        
         presentViewController(controller, animated: true, completion: nil)
         
     }
