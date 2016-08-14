@@ -8,6 +8,13 @@
 
 import UIKit
 
+//get notified when the buttons are tapped
+@objc
+protocol FloatingMenuControllerDelegate: class {
+    optional func floatingMenuController(controller: FloatingMenuController, didTapOnButton button: UIButton, atIndex index: Int)
+    optional func floatingmenuControllerDidCancel(controller: FloatingMenuController)
+}
+
 class FloatingMenuController: UIViewController {
     
     let fromView: UIView
@@ -18,6 +25,8 @@ class FloatingMenuController: UIViewController {
     var buttonDirection = Direction.Up
     var buttonPadding: CGFloat = 70
     var buttonItems = [UIButton]()
+    
+    weak var delegate: FloatingMenuControllerDelegate?
     
     enum Direction {
         case Up
@@ -65,7 +74,17 @@ class FloatingMenuController: UIViewController {
     }
     
     func handleCloseMenu(sender: AnyObject) {
+        // ! /  ? 使用要注意
+        delegate?.floatingmenuControllerDidCancel?(self)
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    //add the method to handle button taps,to find the index to our button and make a call to our delegate
+    func handleMenuButton(sender: AnyObject) {
+        let button = sender as! UIButton
+        if let index = buttonItems.indexOf(button) {
+            delegate?.floatingMenuController!(self, didTapOnButton: button, atIndex: index)
+        }
     }
 
     override func viewDidLoad() {
@@ -79,6 +98,7 @@ class FloatingMenuController: UIViewController {
         view.addSubview(closeButton)
         
         for button in buttonItems {
+            button.addTarget(self, action: "handleMenuButton:", forControlEvents: .TouchUpInside)
             view.addSubview(button)
         }
         

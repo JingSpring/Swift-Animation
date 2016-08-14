@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, FloatingMenuControllerDelegate {
     
     var imageView: UIImageView!
     @IBOutlet weak var AddBtn: FloatingButton!
@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     @IBAction func handleMenuButton(sender: AnyObject) {
         
         let controller = FloatingMenuController(fromView: sender as! UIButton)
+        
+        controller.delegate = self
+        
         controller.buttonItems = [
             FloatingButton(image: UIImage(named: "icon-add")),
             FloatingButton(image: UIImage(named: "model-8")),
@@ -41,6 +44,12 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //-MARK: FloatingMenuControllerDelegate
+    func floatingMenuController(controller: FloatingMenuController, didTapOnButton button: UIButton, atIndex index: Int) {
+        print("tapped index \(index)")
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 
 
